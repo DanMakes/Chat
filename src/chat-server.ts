@@ -1,12 +1,12 @@
 import * as express from 'express';
-import { createServer, Server } from 'http'; //new
+import { createServer, Server } from 'http'; 
 
 export class ChatServer {
 
     public static readonly PORT:number = 5000;
     private app: express.Application;
     private port: string | number;
-    private server: Server; // new
+    private server: Server; 
 
     constructor() {
         this.createApp();
@@ -35,5 +35,9 @@ export class ChatServer {
 
     public getApp(): express.Application {
         return this.app;
+    }
+    private createApp(): void {
+  	this.app = express();
+	this.app.use(express.static('public'));
     }
 }
