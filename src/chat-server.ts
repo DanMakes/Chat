@@ -13,6 +13,7 @@ export class ChatServer {
         this.createApp();
         this.config();
         this.createServer(); 
+	this.sockets();
         this.listen();
     }
 
@@ -41,4 +42,7 @@ export class ChatServer {
   	this.app = express();
 	this.app.use(express.static('public'));
     }
+	private sockets(): void {
+ 	this.io = socketIo(this.server);
+	}
 }
