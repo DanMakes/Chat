@@ -1,6 +1,5 @@
 var socket = io.connect('http://localhost:5000'); 
 
-
 socket.on('add-users', function (data) {
     for (var i = 0; i < data.users.length; i++) {
         var el = document.createElement('div'),
@@ -61,3 +60,20 @@ function createOffer(id) {
 function error(err) {
     console.warn('Error', err);
 }
+
+socket.on('offer-made', function (data) {
+    offer = data.offer;
+
+    pc.setRemoteDescription(new sessionDescription(data.offer), function () {
+        pc.createAnswer(function (answer) {
+            pc.setLocalDescription(new sessionDescription(answer), function () {
+                console.log('MAKE ANSWER');
+                socket.emit('make-answer', {
+                    answer: answer,
+                    to: data.socket
+                });
+            }, error);
+        }, error);
+    }, error);
+
+});
