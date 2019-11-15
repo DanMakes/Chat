@@ -1,9 +1,9 @@
-import * as express from 'express';
- 
-const app = express();
- 
+import { ChatServer } from './chat-server';
+
+let app = new ChatServer().getApp();
+
 app.get('/', (request, response) => {
-  response.send('Hello world!');
+  response.send('Hello Good friend');
 });
- 
-app.listen(5000);
+
+export { app };
