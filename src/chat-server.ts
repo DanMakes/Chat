@@ -45,4 +45,9 @@ export class ChatServer {
 	private sockets(): void {
  	this.io = socketIo(this.server);
 	}
+	
+	export class ChatServer {
+        private socketsArray = [];
+	
+	}
 }
