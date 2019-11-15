@@ -37,6 +37,7 @@ export class ChatServer {
 		   
         });
     }
+	
 
     private createServer(): void {
         this.server = createServer(this.app);
@@ -63,5 +64,12 @@ export class ChatServer {
     	offer: data.offer,
     	socket: socket.id
     });
+});
+
+socket.on('make-answer', function (data) {
+  socket.to(data.to).emit('answer-made', {
+    socket: socket.id,
+    answer: data.answer
+  });
 });
 }
