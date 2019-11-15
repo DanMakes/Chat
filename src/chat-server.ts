@@ -57,4 +57,11 @@ export class ChatServer {
         private socketsArray = [];
 	
 	}
+
+	socket.on('make-offer', function (data) {
+  	socket.to(data.to).emit('offer-made', {
+    	offer: data.offer,
+    	socket: socket.id
+    });
+});
 }
