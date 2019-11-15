@@ -1,4 +1,5 @@
 import * as express from 'express';
+import * as socketIo from 'socket.io'; 
 import { createServer, Server } from 'http'; 
 
 export class ChatServer {
